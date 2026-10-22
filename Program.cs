@@ -13,6 +13,20 @@ class Program
         Check("T03", () => Run(new[] { true, true }), "0");
         Check("T04", () => Run(new[] { false, false }), "100");
         Check("T05", () => Run(Array.Empty<bool>()), "0");
+        Check("T06", () => Run(new[] { false, true }), "50");
+
+Check("T07", () => Run(new[] { false, false, true }), "66");
+
+Check("T08", () =>
+{
+    bool[] sample = { false, true };
+
+    int first = Run(sample);
+    string before = string.Join(",", sample);
+    int second = Run(sample);
+
+    return $"{first}|{before}|{second}";
+}, "50|False,True|50");
         Console.WriteLine("Failed: " + failed);
         Environment.ExitCode = failed == 0 ? 0 : 1;
     }
